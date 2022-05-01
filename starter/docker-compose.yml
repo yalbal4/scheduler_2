@@ -1,0 +1,6 @@
+version: '3'
+services:
+  demo:
+    image: yalbal4/schedulerbackend
+    ports:
+      - "5000:5000"

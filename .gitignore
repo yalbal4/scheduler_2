@@ -1,0 +1,3 @@
+venv
+starter/__pycache__/
+starter/schedule.db

@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "6132bcc7-ec97-4ff9-86ea-932531e4d6bf",
+		"name": "hack_challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}register/",
+					"host": [
+						"{{endpoint}}register"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logging in with account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"jeremy\",\n    \"password\": \"jeremyisaverycoolandamazingperson\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}login/",
+					"host": [
+						"{{endpoint}}login"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating the session",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{update_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}session/",
+					"host": [
+						"{{endpoint}}session"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_name\": \"Do laundry\",\n    \"due_date\": 1651448682,\n    \"completed\": false,\n    \"priority\": 0\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}tasks/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get task 1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/1/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get task 1 but invalid token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 1352323fasd",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/1/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register another account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"jeremyjung\",\n    \"password\": \"jeremyissupersuperamazing\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}register/",
+					"host": [
+						"{{endpoint}}register"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create task with 2nd account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_name\": \"Do homework\",\n    \"due_date\": 1651448682,\n    \"completed\": false,\n    \"priority\": 1\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}tasks/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tasks with 2nd acc",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete task with invalid token",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/1/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete task 1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{session_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/1/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tasks for user 1 again",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}tasks/",
+					"host": [
+						"{{endpoint}}tasks"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all events",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{session_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}events/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 1110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get event 1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get event 1 invalid token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 2110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update event invalid token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 2110\",\n    \"description\": \"Lecture\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete event",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create another event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 3110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a third event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{session_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete event invalid token",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{user2_sess_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"event_name\": \"CS 4110\",\n    \"description\": \"Discussion\",\n    \"start_time\": 1651448682,\n    \"end_time\": 1651448683,\n    \"color\": \"#FFFFFF\"\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}events/1/",
+					"host": [
+						"{{endpoint}}events"
+					],
+					"path": [
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "endpoint",
+			"value": "http://localhost:5000/api/",
+			"type": "string"
+		},
+		{
+			"key": "session_token",
+			"value": "15ea270b91a69983cb6c4eba13e45444f632ffe2"
+		},
+		{
+			"key": "update_token",
+			"value": "f421b04886c415a20526be579d56a2889a28615c"
+		},
+		{
+			"key": "user2_sess_token",
+			"value": "4dadb682a29b5cd963d334879371c4a7a40a5659"
+		}
+	]
+}
